@@ -13,6 +13,9 @@ This is a **Demo E-commerce** application built using **C#**, **.NET Core MVC**,
 - **SOLID Principles**: Follows **best practices** for clean, maintainable, and scalable code.
 - **User Identity Management**: Secure and flexible user authentication and authorization.
 - **Services Layer**: Encapsulates business logic for easier management and testing.
+- **Pagination & Filtering** :Implemented pagination and filtering to improve product search functionality, making data retrieval efficient and user-friendly.
+
+
 
 ## 💻 Database Setup
 1- SQL Server: Ensure that you have SQL Server installed and running And Add Product-Contro-DB.bak File To Your Data Base
