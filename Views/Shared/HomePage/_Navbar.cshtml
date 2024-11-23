@@ -1,0 +1,77 @@
+﻿<!-- Navigation Bar with Categories and Filter -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background:  linear-gradient(to right, #414141, #190c0c); padding: 10px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav d-flex align-items-center">
+                <li class="nav-item mx-3">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link btn btn-outline-light px-5 py-2 animate__animated animate__bounceIn" style="border-radius: 30px; transition: transform 0.3s, background-color 0.3s;">ALL</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a asp-controller="Home" asp-action="Index" asp-route-category="Laptops" class="nav-link btn btn-outline-light px-5 py-2 animate__animated animate__bounceIn" style="border-radius: 30px; transition: transform 0.3s, background-color 0.3s;">Laptops</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a asp-controller="Home" asp-action="Index" asp-route-category="Mobiles" class="nav-link btn btn-outline-light px-5 py-2 animate__animated animate__bounceIn" style="border-radius: 30px; transition: transform 0.3s, background-color 0.3s;">Mobiles</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a asp-controller="Home" asp-action="Index" asp-route-category="Accessories" class="nav-link btn btn-outline-light px-5 py-2 animate__animated animate__bounceIn" style="border-radius: 30px; transition: transform 0.3s, background-color 0.3s;">Accessories</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a asp-controller="Home" asp-action="Index" asp-route-category="Cameras" class="nav-link btn btn-outline-light px-5 py-2 animate__animated animate__bounceIn" style="border-radius: 30px; transition: transform 0.3s, background-color 0.3s;">Cameras</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a asp-controller="Home" asp-action="Index" asp-route-category="Other" class="nav-link btn btn-outline-light px-5 py-2 animate__animated animate__bounceIn" style="border-radius: 30px; transition: transform 0.3s, background-color 0.3s;">Other</a>
+                </li>
+            </ul>
+            <!-- Filter Button -->
+            <button class="btn btn-light btn-lg animate__animated animate__tada" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar" style="background: #ff4d4d; color: white; border-radius: 50px; transition: all 0.3s;">
+                Filter
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="filterSidebar">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Products Filter </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form method="get" action="@Url.Action("Index", "Home")">
+            <!-- Category Filter -->
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="Category">
+                    <option selected>All</option>
+                    <option value="Laptops">Laptops</option>
+                    <option value="Mobiles">Mobiles</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Cameras">Cameras</option>
+                    <option value="Wearables">Other</option>
+                </select>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="mb-3">
+                <label for="sortBy" class="form-label">Price</label>
+                <select class="form-select" id="sortBy" name="SortBy">
+                    <option selected value="desc">Price Descending</option>
+                    <option value="asc">Price Ascending</option>
+                </select>
+            </div>
+
+            <!-- Name Input -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="name" name="Name" placeholder="Ex: [Lenovo]">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+    </div>
+</div>
+

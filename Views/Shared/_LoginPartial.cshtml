@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item"  style="padding-right: 10px">
+                <a class="nav-link btn btn-success text-white px-4 py-2 rounded-pill shadow-sm"
+                   asp-area=""
+                   asp-controller="Product"
+                   asp-action="Add">
+                    <i class="fas fa-plus"></i> Add Product
+                </a>
+            </li>
+        }
+
+        <div class="d-flex justify-content-end align-items-center">
+
+        <li class="nav-item me-3">
+            <a class="nav-link btn btn-primary text-white px-4 py-2 rounded-pill shadow-sm"
+               asp-area="Identity"
+               asp-page="/Account/Manage/Index"
+               title="Manage">
+                <i class="fas fa-user-circle"></i> Profile
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <form class="form-inline m-0"
+                  asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit"
+                        class="nav-link btn btn-danger text-white px-4 py-2 rounded-pill shadow-sm">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </li>
+
+           
+
+        </div>
+
+
+    }
+    else
+    {
+        <!-- Guest Buttons -->
+        <li class="nav-item">
+            <a class="nav-link text-secondary" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-secondary" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+
+
+
+</ul>

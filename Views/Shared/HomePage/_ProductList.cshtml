@@ -1,0 +1,59 @@
+﻿@model Product_Control.Models.ViewModel.PaginationViewModel
+
+<!-- Product List Section -->
+<div class="container mt-4">
+    @if (Model != null && Model.Products.Any())
+    {
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg d-flex flex-column" style="border-radius: 5px;">
+                        <img src="@product.ImageUrl"
+                             class="card-img-top"
+                             alt="@product.Title"
+                             style="height: 200px; object-fit: contain; background-color: #f8f9fa; padding: 10px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@product.Title</h5>
+                            <p class="card-text text-muted" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="@product.Description">
+                                @product.Description
+                            </p>
+                            <h6 class="text-success mt-auto">$@product.Price</h6>
+                        </div>
+                        <div class="card-footer text-center">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning mx-2">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            }
+                            @if (User.IsInRole("User") && !User.IsInRole("Admin"))
+                            {
+                                <a href="@Url.Action("AddToCart", "Cart", new { productId = product.Id, productTitle = product.Title, price = product.Price })" class="btn btn-primary">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </a>
+                            }
+                            @if (!User.IsInRole("User") && !User.IsInRole("Admin"))
+                            {
+                                <a href="/Identity/Account/Login" class="btn btn-primary">
+                                    <i class="fas fa-cart-plus"></i> Sign In For Shopping
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @await Html.PartialAsync("HomePage/_Pagination")
+
+
+    }
+    else
+    {
+        <p class="text-center text-muted">No products available.</p>
+    }
+</div>

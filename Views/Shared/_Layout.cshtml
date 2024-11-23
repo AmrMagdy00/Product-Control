@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Product_Control</title>
+
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Custom Styling -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #222 !important; /* Dark background for navbar */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 30px;
+            color: #fff !important;
+            text-transform: uppercase;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 16px;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #ff5e5b !important; /* Red hover effect */
+            }
+
+        .navbar-toggler-icon {
+            background-color: #fff !important;
+        }
+
+        .footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+            .footer a {
+                color: #ff5e5b !important; /* Red color for links */
+                font-weight: bold;
+            }
+
+                .footer a:hover {
+                    color: #fff !important; /* White hover effect */
+                }
+
+        .btn-custom {
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #ff5e5b !important;
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #28a745 !important;
+            border: none;
+        }
+
+        .btn-outline-success, .btn-outline-danger, .btn-outline-info {
+            border-color: #ff5e5b;
+            color: #ff5e5b;
+        }
+
+            .btn-outline-success:hover, .btn-outline-danger:hover, .btn-outline-info:hover {
+                background-color: #ff5e5b;
+                color: #fff;
+            }
+
+        /* Fixed cart button */
+        .cart-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+            .cart-button i {
+                font-size: 30px;
+                color: white;
+            }
+
+            .cart-button .badge {
+                background-color: #ff5e5b;
+                color: white;
+                font-size: 16px;
+                position: absolute;
+                top: -5px;
+                right: -5px;
+            }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        @{
+            // Set navbar color based on user role
+            string navbarClass = "bg-dark"; // default dark color for navbar
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    navbarClass = "bg-danger"; // red color for Admin users
+                }
+                else if (User.IsInRole("User"))
+                {
+                    navbarClass = "bg-primary"; // blue color for regular users
+                }
+            }
+        }
+        <nav class="navbar navbar-expand-sm navbar-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <!-- Website Logo/Brand -->
+                <a class="navbar-brand fw-bold text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-cogs"></i> Product_Control
+                </a>
+
+                <!-- Navbar toggle button for small screens -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links -->
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- Left links -->
+                    <ul class="navbar-nav flex-grow-1">
+@*                         <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li> *@
+
+                    </ul>
+
+                    <!-- Right links (Login/Partial) -->
+                    <partial name="_LoginPartial" />
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+    <!-- Footer Section -->
+    <footer class="border-top footer text-muted d-flex flex-column mt-auto">
+        <div class="container text-center">
+            &copy; 2024 - Product Control
+        </div>
+        <!-- Social Media Icons -->
+        <div class="text-center mb-5">
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/201000262449" target="_blank" class="btn btn-outline-success mx-2">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <!-- Email Button -->
+            <a href="mailto:bamrmagdy@gmail.com" class="btn btn-outline-danger mx-2">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <!-- LinkedIn Button -->
+            <a href="https://www.linkedin.com/in/amrmagdydb" target="_blank" class="btn btn-outline-info mx-2">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+        </div>
+    </footer>
+
+    <!-- Custom CSS for Footer -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .footer {
+            margin-top: auto; /* Makes sure the footer sticks at the bottom */
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+            .footer a {
+                color: #ff5e5b !important;
+                font-weight: bold;
+            }
+
+                .footer a:hover {
+                    color: #fff !important;
+                }
+    </style>
+
+    <!-- Scripts -->
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

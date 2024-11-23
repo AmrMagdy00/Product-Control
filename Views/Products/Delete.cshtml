@@ -1,0 +1,32 @@
+﻿@model Product_Control.Dto.ProductDto
+
+@{
+    ViewData["Title"] = "Delete Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-4">
+    <h2 class="text-center mb-4 display-4 font-weight-bold text-danger">Delete Product</h2>
+
+    <div class="alert alert-warning text-center" role="alert">
+        Are you sure you want to delete this product? This action cannot be undone.
+    </div>
+
+    <div class="card shadow-lg p-4 bg-light rounded">
+        <h4 class="card-title mb-3 font-weight-bold">Product Details:</h4>
+
+        <p><strong>Title:</strong> @Model.Title</p>
+        <p><strong>Price:</strong> $@Model.Price</p>
+        <p><strong>Category:</strong> @Model.Category</p>
+
+    </div>
+
+    <form asp-controller="Product" asp-action="ConfirmedDelete" method="post" class="mt-4">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-danger btn-lg mx-2">Delete</button>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary btn-lg mx-2">Cancel</a>
+        </div>
+    </form>
+</div>

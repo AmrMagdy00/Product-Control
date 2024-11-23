@@ -1,0 +1,49 @@
+﻿<div class="container mt-5">
+    <table class="table table-hover table-striped table-bordered shadow-lg w-100 animate__animated animate__fadeIn"
+           style="background-color: #f7f9fc; border-radius: 10px;">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col" class="h5 font-weight-bold">Name</th>
+                <th scope="col" class="h5 font-weight-bold">Price</th>
+                <th scope="col" class="h5 font-weight-bold">Serial Number</th>
+                <th scope="col" class="h5 font-weight-bold">Category</th>
+                <th scope="col" class="h5 font-weight-bold">Clients</th>
+                <th scope="col" class="h5 font-weight-bold">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="animate__animated animate__fadeInUp">
+                    <td class="h6 font-weight-bold">@item.Name</td>
+                    <td class="h6 font-weight-bold">@item.Price.ToString("N2") $</td>
+                    <td class="h6 font-weight-bold">@item.SerialNumber?.Name</td>
+                    <td class="h6 font-weight-bold">@item.Category?.Name</td>
+                    <td class="h6 font-weight-bold">
+                        @if (item.ItemClients != null && item.ItemClients.Count > 0)
+                        {
+                            @foreach (var client in item.ItemClients)
+                            {
+                                <span class="h6 font-weight-bold ">@client.Client.Name</span>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">No Clients</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-success btn-sm animate__animated animate__pulse animate__infinite"
+                           asp-action="Edit" asp-route-id="@item.Id">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm animate__animated animate__pulse animate__infinite"
+                           asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
