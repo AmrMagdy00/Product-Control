@@ -1,0 +1,2 @@
+# Product-Control
+ Product Control is a simple yet powerful product management application built with C# and .NET Core MVC. It allows for full CRUD operations (Create, Read, Update, Delete) on products, with robust authentication and authorization for different user roles (Guest, User, Admin). The app follows best practices for clean code and uses Repository Pattern and DTOs to ensure a scalable and maintainable architecture.
