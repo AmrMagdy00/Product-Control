@@ -13,9 +13,9 @@ namespace Product_Control.Controllers
     public class ProductController : Controller
     {
 
-        private readonly ProductsService _productsService;
+        private readonly IProductsService _productsService;
 
-        public ProductController(ProductsService ProductsService  )
+        public ProductController(IProductsService ProductsService  )
         {
             _productsService = ProductsService;
         }
