@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Product_Control.Data;
 using Product_Control.Interface;
 using Product_Control.Models;
@@ -56,16 +57,48 @@ namespace Product_Control.Repository
 
         public async Task<Product> UpdateAsync(Product product)
         {
+            var updateQuery = @"
+        UPDATE Products 
+        SET Title = @Title, 
+            Description = @Description, 
+            Price = @Price, 
+            ImageUrl = @ImageUrl, 
+            Category = @Category
+        WHERE Id = @Id";
 
-            _context.Products.Update(product);
-            await _context.SaveChangesAsync();
+            var parameters = new[]
+            {
+        new SqlParameter("@Id", product.Id),
+        new SqlParameter("@Title", product.Title),
+        new SqlParameter("@Description", product.Description),
+        new SqlParameter("@Price", product.Price),
+        new SqlParameter("@ImageUrl", product.ImageUrl),
+        new SqlParameter("@Category", product.Category)
+    };
+
+            await _context.Database.ExecuteSqlRawAsync(updateQuery, parameters);
+
 
             return product;
         }
 
+
         public async Task<Product> AddAsync(Product product)
         {
-            await _context.Products.AddAsync(product);
+            //await _context.Products.AddAsync(product);
+            var productQuery = "INSERT INTO Products (Title, Description, Price, ImageUrl, Category) VALUES (@Title, @Description, @Price, @ImageUrl, @Category)";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@Title", product.Title),
+        new SqlParameter("@Description", product.Description),
+        new SqlParameter("@Price", product.Price),
+        new SqlParameter("@ImageUrl", product.ImageUrl),
+        new SqlParameter("@Category", product.Category),
+    };
+
+            await _context.Database.ExecuteSqlRawAsync(productQuery, parameters);
+
             await _context.SaveChangesAsync();
 
             return product;

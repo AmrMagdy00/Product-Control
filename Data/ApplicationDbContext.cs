@@ -11,7 +11,14 @@ namespace Product_Control.Data
         {
         }
 
+
+
+
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<NewProducts> NewProducts { get; set; }
+
+        public DbSet <UpdatedProducts> UpdateProducts { get; set; }
 
     }
 }

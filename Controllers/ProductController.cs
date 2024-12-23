@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Product_Control.Dto;
+using Product_Control.Interface;
 using Product_Control.Mappers;
 using Product_Control.Models;
 using Product_Control.Services;
@@ -13,9 +14,9 @@ namespace Product_Control.Controllers
     public class ProductController : Controller
     {
 
-        private readonly IProductsService _productsService;
+        private readonly IProductService _productsService;
 
-        public ProductController(IProductsService ProductsService  )
+        public ProductController(IProductService ProductsService  )
         {
             _productsService = ProductsService;
         }

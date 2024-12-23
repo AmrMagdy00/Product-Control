@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control\\Product-Control.csproj": {}
+    "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control.csproj": {}
   },
   "projects": {
-    "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control\\Product-Control.csproj": {
+    "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control\\Product-Control.csproj",
+        "projectUniqueName": "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control.csproj",
         "projectName": "Product-Control",
-        "projectPath": "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control\\Product-Control.csproj",
+        "projectPath": "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control.csproj",
         "packagesPath": "C:\\Users\\3el3a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\Product-Control\\obj\\",
+        "outputPath": "C:\\Users\\3el3a\\Desktop\\New folder\\Product-Control\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
